@@ -1,4 +1,13 @@
-import { View, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import RepositoryItemTopContainer from './RepositoryItemTopContainer';
+import RepositoryItemBottomContainer from './RepositoryItemBottomContainer';
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+    backgroundColor: 'grey',
+  },
+});
 
 const RepositoryItem = ({ item }) => {
   console.log('repo item props', item);
@@ -10,16 +19,22 @@ const RepositoryItem = ({ item }) => {
     forksCount,
     reviewCount,
     ratingAverage,
+    ownerAvatarUrl,
   } = item;
   return (
-    <View>
-      <Text>Full name: {fullName}</Text>
-      <Text>Description: {description}</Text>
-      <Text>Language: {language}</Text>
-      <Text>Stars: {stargazersCount}</Text>
-      <Text>Forks: {forksCount}</Text>
-      <Text>Reviews: {reviewCount}</Text>
-      <Text>Rating: {ratingAverage}</Text>
+    <View style={styles.container}>
+      <RepositoryItemTopContainer
+        description={description}
+        fullName={fullName}
+        language={language}
+        ownerAvatarUrl={ownerAvatarUrl}
+      />
+      <RepositoryItemBottomContainer
+        forksCount={forksCount}
+        ratingAverage={ratingAverage}
+        reviewCount={reviewCount}
+        stargazersCount={stargazersCount}
+      />
     </View>
   );
 };
