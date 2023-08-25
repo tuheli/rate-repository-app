@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import Text from './Text';
 
 const styles = StyleSheet.create({
@@ -16,15 +16,17 @@ const styles = StyleSheet.create({
 
 const AppBarTab = ({ header }) => {
   return (
-    <View style={styles.container}>
-      <Text
-        color={styles.text.color}
-        fontSize={styles.text.fontSize}
-        fontWeight={styles.text.fontWeight}
-      >
-        {header}
-      </Text>
-    </View>
+    <Pressable onPress={() => console.log('pressed app bar tab')}>
+      <View style={styles.container}>
+        <Text
+          color={styles.text.color}
+          fontSize={styles.text.fontSize}
+          fontWeight={styles.text.fontWeight}
+        >
+          {header}
+        </Text>
+      </View>
+    </Pressable>
   );
 };
 
