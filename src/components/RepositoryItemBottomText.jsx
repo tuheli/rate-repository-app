@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    margin: 5,
+    margin: 10,
   },
   header: {
     fontWeight: 'bold',
