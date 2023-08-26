@@ -1,6 +1,7 @@
 import { View, StyleSheet } from 'react-native';
-import AppBarTab from './AppBarTab';
 import Constants from 'expo-constants';
+
+import AppBarTab from './AppBarTab';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +21,8 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <AppBarTab header="Repositories" />
+      <AppBarTab header="Repositories" linkTo="/repositories" />
+      <AppBarTab header="Sign In" linkTo="/signIn" />
     </View>
   );
 };
