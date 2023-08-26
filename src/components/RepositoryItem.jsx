@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
-import RepositoryItemTopContainer from './RepositoryItemTopContainer';
-import RepositoryItemBottomContainer from './RepositoryItemBottomContainer';
+import RepositoryItemTopHalf from './RepositoryItemTopHalf';
+import RepositoryItemBottomHalf from './RepositoryItemBottomHalf';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({ item }) => {
-  console.log('repo item props', item);
   const {
     fullName,
     description,
@@ -23,13 +22,13 @@ const RepositoryItem = ({ item }) => {
   } = item;
   return (
     <View style={styles.container}>
-      <RepositoryItemTopContainer
+      <RepositoryItemTopHalf
         description={description}
         fullName={fullName}
         language={language}
         ownerAvatarUrl={ownerAvatarUrl}
       />
-      <RepositoryItemBottomContainer
+      <RepositoryItemBottomHalf
         forksCount={forksCount}
         ratingAverage={ratingAverage}
         reviewCount={reviewCount}
