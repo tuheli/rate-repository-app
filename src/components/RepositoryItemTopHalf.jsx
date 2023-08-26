@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     margin: 3,
   },
   languageContainer: {
-    backgroundColor: 'red',
+    backgroundColor: 'blue',
     alignSelf: 'flex-start',
   },
   tinyLogo: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItemTopContainer = ({
+const RepositoryItemTopHalf = ({
   ownerAvatarUrl,
   fullName,
   description,
@@ -63,4 +63,4 @@ const RepositoryItemTopContainer = ({
   );
 };
 
-export default RepositoryItemTopContainer;
+export default RepositoryItemTopHalf;
