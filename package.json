@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.1",
-    "@expo/metro-config": "^0.10.7",
+    "@expo/metro-config": "0.8.0",
     "@expo/webpack-config": "^0.17.0",
     "expo": "~46.0.21",
     "expo-status-bar": "~1.4.0",
