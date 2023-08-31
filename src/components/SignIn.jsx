@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import FormikTextInput from './FormikTextInput';
 import Text from './Text';
 import useSignIn from '../hooks/useSignIn';
+import { useNavigate } from 'react-router-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,15 +48,17 @@ const SignInForm = ({ onSubmit }) => {
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     const { username, password } = values;
 
     try {
       await signIn({ username, password });
+      navigate('/repositories');
     } catch (error) {
       // Note: The server only throws error, it doesnt return any response so there are no actual logs in the front
-      console.log(error);
+      console.log('Error at sign in', error);
     }
   };
 
