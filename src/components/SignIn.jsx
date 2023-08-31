@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import FormikTextInput from './FormikTextInput';
 import Text from './Text';
 import useSignIn from '../hooks/useSignIn';
+import AuthStorage from '../utils/authStorage';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,19 +42,38 @@ const SignInForm = ({ onSubmit }) => {
       <Pressable style={styles.signInButton} onPress={onSubmit}>
         <Text>Sign In</Text>
       </Pressable>
+      <Pressable
+        style={styles.signInButton}
+        onPress={async () => {
+          const authStorage = new AuthStorage();
+
+          const currentItem = await authStorage.getAccessToken();
+
+          console.log('current item', currentItem);
+
+          await authStorage.removeAccessToken();
+
+          const afterRemove = await authStorage.getAccessToken();
+
+          console.log('item after remove', afterRemove);
+        }}
+      >
+        <Text>Remove access token</Text>
+      </Pressable>
     </View>
   );
 };
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const authStorage = new AuthStorage();
 
   const onSubmit = async (values) => {
     const { username, password } = values;
 
     try {
       const { data } = await signIn({ username, password });
-      console.log(data);
+      await authStorage.setAccessToken(data.authenticate.accessToken);
     } catch (error) {
       // Note: The server only throws error, it doesnt return any response so there are no actual logs in the front
       console.log(error);
