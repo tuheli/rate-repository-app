@@ -4,6 +4,7 @@ import * as yup from 'yup';
 
 import FormikTextInput from './FormikTextInput';
 import Text from './Text';
+import useSignIn from '../hooks/useSignIn';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,7 +46,19 @@ const SignInForm = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const onSubmit = (values) => console.log('submit sign in form', values);
+  const [signIn] = useSignIn();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data);
+    } catch (error) {
+      // Note: The server only throws error, it doesnt return any response so there are no actual logs in the front
+      console.log(error);
+    }
+  };
 
   return (
     <Formik
