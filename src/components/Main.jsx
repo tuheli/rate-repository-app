@@ -5,7 +5,7 @@ import RepositoryList from './RepositoryList/index';
 import AppBar from './AppBar';
 import SignIn from './SignIn';
 import useMe from '../hooks/useMe';
-import RepositoryItemContainer from './RepositoryList/RepositoryItem/RepositoryItemContainer';
+import SingleRepositoryItemContainer from './RepositoryList/RepositoryItem/SingleRepositoryItemContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +23,7 @@ const Main = () => {
       <Routes>
         <Route
           path="/repositories/:id"
-          element={<RepositoryItemContainer />}
+          element={<SingleRepositoryItemContainer />}
           exact
         />
         <Route path="/signIn" element={<SignIn />} exact />
