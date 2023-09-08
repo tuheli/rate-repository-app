@@ -47,7 +47,7 @@ const RepositoryItemTopHalf = ({
       <View style={styles.imageContainer}>
         <Image style={styles.tinyLogo} source={{ uri: ownerAvatarUrl }} />
       </View>
-      <View style={styles.dataContainer}>
+      <View style={styles.dataContainer} testID="fullName">
         <Text
           fontWeight={styles.textHeader.fontWeight}
           fontSize={styles.textHeader.fontSize}
