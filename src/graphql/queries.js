@@ -41,6 +41,19 @@ export const GET_REPOSITORY = gql`
       ratingAverage
       ownerAvatarUrl
       url
+      reviews {
+        edges {
+          node {
+            id
+            createdAt
+            rating
+            text
+            user {
+              username
+            }
+          }
+        }
+      }
     }
   }
 `;
