@@ -5,6 +5,7 @@ import RepositoryList from './RepositoryList/index';
 import AppBar from './AppBar';
 import SignIn from './SignIn';
 import useMe from '../hooks/useMe';
+import RepositoryItemContainer from './RepositoryList/RepositoryItem/RepositoryItemContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +21,11 @@ const Main = () => {
     <View style={styles.container}>
       <AppBar me={me} />
       <Routes>
+        <Route
+          path="/repositories/:id"
+          element={<RepositoryItemContainer />}
+          exact
+        />
         <Route path="/signIn" element={<SignIn />} exact />
         <Route path="/repositories" element={<RepositoryList />} exact />
         <Route path="*" element={<Navigate to="/signIn" />} replace />
