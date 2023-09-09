@@ -1,27 +1,13 @@
-import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router-native';
 import { FlatList } from 'react-native';
 
-import { GET_REPOSITORY } from '../../../graphql/queries';
 import RepositoryItem from '.';
 import Text from '../../Text';
 import ItemSeparator from '../ItemSeparator';
 import ReviewItem from './ReviewItem';
+import useRepository from '../../../hooks/useRepository';
 
 const SingleRepositoryItemContainer = () => {
-  const { id } = useParams();
-
-  const { loading, data } = useQuery(GET_REPOSITORY, {
-    variables: {
-      id: id,
-    },
-    onCompleted: () => console.log('Query completed: GET_REPOSITORY'),
-    onError: (error) => console.log('Query error: GET_REPOSITORY', error),
-  });
-
-  console.log('id form params', id);
-
-  console.log('data', data);
+  const { loading, data } = useRepository();
 
   const item = !loading && data ? data.repository : null;
 
@@ -29,7 +15,6 @@ const SingleRepositoryItemContainer = () => {
     item && item.reviews ? item.reviews.edges.map((edge) => edge.node) : [];
 
   console.log('item', item);
-
   console.log('reviews', reviewNodes);
 
   if (!item) {
