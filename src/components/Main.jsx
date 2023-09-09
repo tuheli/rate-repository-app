@@ -6,6 +6,8 @@ import AppBar from './AppBar';
 import SignIn from './SignIn';
 import useMe from '../hooks/useMe';
 import SingleRepositoryItemContainer from './RepositoryList/RepositoryItem/SingleRepositoryItemContainer';
+import CreateReview from './CreateReview';
+import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,16 +19,23 @@ const styles = StyleSheet.create({
 const Main = () => {
   const me = useMe();
 
+  console.log('me', me);
+
   return (
     <View style={styles.container}>
       <AppBar me={me} />
       <Routes>
+        <Route path="/createReview" element={<CreateReview />} exact />
         <Route
           path="/repositories/:id"
           element={<SingleRepositoryItemContainer />}
           exact
         />
-        <Route path="/signIn" element={<SignIn />} exact />
+        <Route
+          path="/signIn"
+          element={me ? <Text>Signed in as {me.username}</Text> : <SignIn />}
+          exact
+        />
         <Route path="/repositories" element={<RepositoryList />} exact />
         <Route path="*" element={<Navigate to="/signIn" />} replace />
       </Routes>
