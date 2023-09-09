@@ -3,8 +3,13 @@ import { useNavigate } from 'react-router-native';
 
 import RepositoryItem from './RepositoryItem';
 import ItemSeparator from './ItemSeparator';
+import RepositorySortMenu from './RepositorySortMenu';
 
-const RepositoryListContainer = ({ repositories }) => {
+const RepositoryListContainer = ({
+  repositories,
+  setOrderBy,
+  setOrderDirection,
+}) => {
   const navigate = useNavigate();
 
   const repositoryNodes = repositories
@@ -19,6 +24,12 @@ const RepositoryListContainer = ({ repositories }) => {
 
   return (
     <FlatList
+      ListHeaderComponent={
+        <RepositorySortMenu
+          setOrderBy={setOrderBy}
+          setOrderDirection={setOrderDirection}
+        />
+      }
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => (
