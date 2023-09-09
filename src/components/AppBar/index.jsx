@@ -29,12 +29,16 @@ const AppBar = ({ me }) => {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} horizontal>
         <AppBarTab header="Repositories" linkTo="/repositories" />
-        <AppBarTab header="Create Review" linkTo="/createReview" />
+
+        {me && <AppBarTab header="Create Review" linkTo="/createReview" />}
+
         {!me ? (
           <AppBarTab header="Sign In" linkTo="/signIn" />
         ) : (
           <AppBarTab header="Sign Out" linkTo="/signIn" onPress={signOut} />
         )}
+
+        {!me && <AppBarTab header="Sign Up" linkTo="/signUp" />}
       </ScrollView>
     </View>
   );
