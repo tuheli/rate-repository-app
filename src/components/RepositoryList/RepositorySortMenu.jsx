@@ -25,6 +25,7 @@ const RepositorySortMenu = ({ setOrderBy, setOrderDirection }) => {
         onDismiss={closeMenu}
         anchor={<Button onPress={openMenu} title={title} />}
       >
+        <Menu.Item title="Select an item..." />
         <Menu.Item
           onPress={() => {
             setOrderBy('CREATED_AT');
