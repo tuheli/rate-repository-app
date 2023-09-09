@@ -1,6 +1,15 @@
-import { Button, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import { Menu } from 'react-native-paper';
 import { useState } from 'react';
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 5,
+    backgroundColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+});
 
 const RepositorySortMenu = ({ setOrderBy, setOrderDirection }) => {
   const [visible, setVisible] = useState(true);
@@ -10,14 +19,7 @@ const RepositorySortMenu = ({ setOrderBy, setOrderDirection }) => {
   const closeMenu = () => setVisible(false);
 
   return (
-    <View
-      style={{
-        margin: 5,
-        backgroundColor: 'black',
-        flexDirection: 'row',
-        justifyContent: 'center',
-      }}
-    >
+    <View style={styles.container}>
       <Menu
         visible={visible}
         onDismiss={closeMenu}
