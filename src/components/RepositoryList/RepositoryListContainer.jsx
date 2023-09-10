@@ -9,6 +9,7 @@ const RepositoryListContainer = ({
   repositories,
   setOrderBy,
   setOrderDirection,
+  setSearchKeyword,
 }) => {
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ const RepositoryListContainer = ({
         <RepositorySortMenu
           setOrderBy={setOrderBy}
           setOrderDirection={setOrderDirection}
+          setSearchKeyword={setSearchKeyword}
         />
       }
       data={repositoryNodes}
