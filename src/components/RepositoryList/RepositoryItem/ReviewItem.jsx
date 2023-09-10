@@ -1,4 +1,5 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
+import { useNavigate } from 'react-router-native';
 
 import Text from '../../Text';
 
@@ -23,10 +24,33 @@ const styles = StyleSheet.create({
   textStyle: {
     marginTop: 5,
   },
+  buttonContainer: {
+    backgroundColor: 'green',
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  viewButton: {
+    backgroundColor: 'blue',
+    margin: 5,
+  },
+  deleteButton: {
+    backgroundColor: 'red',
+    margin: 5,
+  },
 });
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({
+  review,
+  titleAsUsername = true,
+  showButtons = false,
+  handleDeleteClick = null,
+}) => {
+  const navigate = useNavigate();
+
   console.log('review at review item', review);
+  console.log('showing review buttons', showButtons);
 
   const formatDate = (dateString) => {
     if (!dateString) {
@@ -47,16 +71,38 @@ const ReviewItem = ({ review }) => {
   console.log('format date function', formatDate(review.createdAt));
 
   return (
-    <View style={styles.container}>
-      <View style={styles.circle}>
-        <Text>{review.rating}</Text>
+    <>
+      <View style={styles.container}>
+        <View style={styles.circle}>
+          <Text>{review.rating}</Text>
+        </View>
+        <View style={styles.rightSideContainer}>
+          {titleAsUsername ? (
+            <Text fontWeight="bold">{review.user.username}</Text>
+          ) : (
+            <Text fontWeight="bold">{review.repository.name}</Text>
+          )}
+          <Text>{formatDate(review.createdAt)}</Text>
+          <Text style={styles.textStyle}>{review.text}</Text>
+        </View>
       </View>
-      <View style={styles.rightSideContainer}>
-        <Text fontWeight="bold">{review.user.username}</Text>
-        <Text>{formatDate(review.createdAt)}</Text>
-        <Text style={styles.textStyle}>{review.text}</Text>
-      </View>
-    </View>
+      {showButtons && (
+        <View style={styles.buttonContainer}>
+          <View style={styles.viewButton}>
+            <Button
+              title="View Repository"
+              onPress={() => navigate(`/repositories/${review.repository.id}`)}
+            />
+          </View>
+          <View style={styles.deleteButton}>
+            <Button
+              title="Delete Repository"
+              onPress={() => handleDeleteClick(review.id)}
+            />
+          </View>
+        </View>
+      )}
+    </>
   );
 };
 
