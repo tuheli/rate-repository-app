@@ -1,4 +1,4 @@
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button, Alert } from 'react-native';
 import { useNavigate } from 'react-router-native';
 
 import Text from '../../Text';
@@ -68,6 +68,20 @@ const ReviewItem = ({
     return dateSubString;
   };
 
+  const createDeleteAlert = () =>
+    Alert.alert(
+      'Delete Review',
+      'Are you sure you want to delete this review?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'Delete', onPress: () => handleDeleteClick(review.id) },
+      ]
+    );
+
   console.log('format date function', formatDate(review.createdAt));
 
   return (
@@ -86,6 +100,7 @@ const ReviewItem = ({
           <Text style={styles.textStyle}>{review.text}</Text>
         </View>
       </View>
+
       {showButtons && (
         <View style={styles.buttonContainer}>
           <View style={styles.viewButton}>
@@ -95,10 +110,7 @@ const ReviewItem = ({
             />
           </View>
           <View style={styles.deleteButton}>
-            <Button
-              title="Delete Repository"
-              onPress={() => handleDeleteClick(review.id)}
-            />
+            <Button title="Delete Repository" onPress={createDeleteAlert} />
           </View>
         </View>
       )}
