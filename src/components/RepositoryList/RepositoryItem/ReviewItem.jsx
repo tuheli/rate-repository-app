@@ -1,5 +1,4 @@
 import { View, StyleSheet } from 'react-native';
-// import Ionicons from '@expo/vector-icons/Ionicons';
 
 import Text from '../../Text';
 
@@ -27,6 +26,8 @@ const styles = StyleSheet.create({
 });
 
 const ReviewItem = ({ review }) => {
+  console.log('review at review item', review);
+
   const formatDate = (dateString) => {
     if (!dateString) {
       console.log('Failed to format date');
