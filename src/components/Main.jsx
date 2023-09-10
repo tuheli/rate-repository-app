@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 const Main = () => {
-  const me = useMe();
+  const [me] = useMe();
 
   console.log('me', me);
 
