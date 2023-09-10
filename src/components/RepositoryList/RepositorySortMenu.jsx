@@ -1,17 +1,24 @@
 import { Button, StyleSheet, View } from 'react-native';
-import { Menu } from 'react-native-paper';
+import { Menu, Searchbar } from 'react-native-paper';
 import { useState } from 'react';
 
 const styles = StyleSheet.create({
   container: {
     margin: 5,
     backgroundColor: 'black',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
+  },
+  searchBar: {
+    borderRadius: 10,
   },
 });
 
-const RepositorySortMenu = ({ setOrderBy, setOrderDirection }) => {
+const RepositorySortMenu = ({
+  setOrderBy,
+  setOrderDirection,
+  setSearchKeyword,
+}) => {
   const [visible, setVisible] = useState(true);
   const [title, setTitle] = useState('Latest repositories');
 
@@ -20,6 +27,13 @@ const RepositorySortMenu = ({ setOrderBy, setOrderDirection }) => {
 
   return (
     <View style={styles.container}>
+      <Searchbar
+        style={styles.searchBar}
+        placeholder="Search keyword..."
+        iconColor="grey"
+        fontSize={20}
+        onChangeText={(value) => setSearchKeyword(value)}
+      />
       <Menu
         visible={visible}
         onDismiss={closeMenu}
