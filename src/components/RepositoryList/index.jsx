@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+import { useNavigate } from 'react-router-native';
 
 import useRepositories from '../../hooks/useRepositories';
 import RepositoryListContainer from './RepositoryListContainer';
@@ -17,6 +18,8 @@ const RepositoryList = () => {
     searchKeyword
   );
 
+  const navigate = useNavigate();
+
   const debouncedSetSearchKeyword = useDebouncedCallback((value) => {
     setSearchKeyword(value);
   }, setKeywordDelay);
@@ -27,6 +30,7 @@ const RepositoryList = () => {
       setOrderBy={setOrderBy}
       setOrderDirection={setOrderDirection}
       setSearchKeyword={debouncedSetSearchKeyword}
+      navigate={navigate}
     />
   );
 };
